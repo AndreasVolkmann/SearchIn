@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "SearchIn",
+  "version": "1.0",
+  "description": "Better search for LinkedIn",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.linkedin.com/jobs/search/*"
+      ],
+      "js": [
+        "searchIn-plugin.js"
+      ]
+    }
+  ]
+}
