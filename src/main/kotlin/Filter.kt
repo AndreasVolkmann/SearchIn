@@ -6,7 +6,7 @@ class Filter(private val element: Element) {
     fun filter(): Boolean = filterTitle() || filterLocation() || filterCompany()
 
     private val titleContainsFilters = listOf(
-        "android", "(intern)", "mobile"
+        "android", "(intern)", "mobile", "ios"
     )
 
     private fun filterTitle(): Boolean {
@@ -16,7 +16,8 @@ class Filter(private val element: Element) {
 
     private val locationEndingFilters = listOf(
         "IE", "GB", "United Kingdom", "Ireland", "RU", "Poland", "PL", "Türkiye", "UY", "IN", "India", "AR", "FI", "LT", "TN",
-        "Finland", "SE", "HU", "PH", "TR", "ZA", "GR", "Greece", "RO", "UA", "MX", "CO", "MY", "Uruguay", "Norway"
+        "Finland", "SE", "HU", "PH", "TR", "ZA", "GR", "Greece", "RO", "UA", "MX", "CO", "MY", "Uruguay", "Norway",
+        "Brasil", "BR", "Denmark", "Sweden", "DK", "Romania", "CZ","SK","México", "NO"
     )
 
     private fun filterLocation(): Boolean {
