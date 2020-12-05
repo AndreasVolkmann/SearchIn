@@ -6,7 +6,7 @@ class Filter(private val element: Element) {
     fun filter(): Boolean = filterTitle() || filterLocation() || filterCompany()
 
     private val titleContainsFilters = listOf(
-        "android", "(intern)", "mobile", "ios"
+        "android", "(intern)", "mobile", "ios", "principal", "c++"
     )
 
     private fun filterTitle(): Boolean {
@@ -17,7 +17,9 @@ class Filter(private val element: Element) {
     private val locationEndingFilters = listOf(
         "IE", "GB", "United Kingdom", "Ireland", "RU", "Poland", "PL", "Türkiye", "UY", "IN", "India", "AR", "FI", "LT", "TN",
         "Finland", "SE", "HU", "PH", "TR", "ZA", "GR", "Greece", "RO", "UA", "MX", "CO", "MY", "Uruguay", "Norway",
-        "Brasil", "BR", "Denmark", "Sweden", "DK", "Romania", "CZ","SK","México", "NO"
+        "Brasil", "BR", "Denmark", "Sweden", "DK", "Romania", "CZ","SK","México", "NO", "Spain", "ES", "VN",
+        "Italy", "PT", "FR", "São Paulo e Região", "Croatia", "Bulgaria", "Belarus", "Italia", "Tel Aviv, IL", "KH",
+        "United Arab Emirates", "Serbia", "IT", "ID", "Costa Rica", "Turkey"
     )
 
     private fun filterLocation(): Boolean {
@@ -29,12 +31,14 @@ class Filter(private val element: Element) {
     }
 
     private val companyFilters = listOf(
-        "Amazon", "DevFactory", "Crossover for Work"
+        "Amazon", "DevFactory", "Crossover for Work", "Pinterest", "Snap Inc.", "Disney Streaming Services"
     )
 
     private fun filterCompany(): Boolean {
         val company = element.getElementsByClassName("job-card-container__company-name")[0]
             ?.textContent?.trim()
+            ?.removeSuffix("Remote")
+            ?.trim()
             ?: ""
         return companyFilters.any { it == company }
     }
