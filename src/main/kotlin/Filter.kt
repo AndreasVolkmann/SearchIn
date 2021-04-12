@@ -5,7 +5,7 @@ class Filter(private val element: Element) {
 
     fun filter(): Boolean = filterTitle() || filterLocation() || filterCompany()
 
-    private val titleContainsFilters = listOf(
+    private val titleContainsFilters = setOf(
         "android", "(intern)", "mobile", "ios", "principal", "c++"
     )
 
@@ -14,12 +14,13 @@ class Filter(private val element: Element) {
         return titleContainsFilters.any { title.contains(it, ignoreCase = true) }
     }
 
-    private val locationEndingFilters = listOf(
+    private val locationEndingFilters = setOf(
         "IE", "GB", "United Kingdom", "Ireland", "RU", "Poland", "PL", "Türkiye", "UY", "IN", "India", "AR", "FI", "LT", "TN",
         "Finland", "SE", "HU", "PH", "TR", "ZA", "GR", "Greece", "RO", "UA", "MX", "CO", "MY", "Uruguay", "Norway",
         "Brasil", "BR", "Denmark", "Sweden", "DK", "Romania", "CZ","SK","México", "NO", "Spain", "ES", "VN",
         "Italy", "PT", "FR", "São Paulo e Região", "Croatia", "Bulgaria", "Belarus", "Italia", "Tel Aviv, IL", "KH",
-        "United Arab Emirates", "Serbia", "IT", "ID", "Costa Rica", "Turkey"
+        "United Arab Emirates", "Serbia", "IT", "ID", "Costa Rica", "Turkey", "South Africa", "Israel", "Lithuania",
+        "Slovakia", "Czechia", "Ukraine", "Colombia", "Kenya", "Estonia"
     )
 
     private fun filterLocation(): Boolean {
@@ -27,10 +28,10 @@ class Filter(private val element: Element) {
             .getElementsByClassName("job-card-container__metadata-wrapper")[0]
             ?.textContent?.substringBefore(" Remote")?.trim()
             ?: ""
-        return locationEndingFilters.any { location.endsWith(it) }
+        return locationEndingFilters.any(location::endsWith)
     }
 
-    private val companyFilters = listOf(
+    private val companyFilters = setOf(
         "Amazon", "DevFactory", "Crossover for Work", "Pinterest", "Snap Inc.", "Disney Streaming Services"
     )
 
